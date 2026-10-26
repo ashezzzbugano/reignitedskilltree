@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#090b12">
+<title>REIGNITED // Skill NIdere </title>
+<style>
+:root{
+  --bg:#101114;
+  --panel:#18191d;
+  --panel2:#202126;
+  --line:#34353b;
+  --text:#d0d0d2;
+  --muted:#85858d;
+  --cyan:#a5a7ad;
+  --pink:#99939b;
+  --gold:#aaa69d;
+  --violet:#a09da8;
+  --green:#a1a6a1;
+  --danger:#b18b90;
+}
+*{box-sizing:border-box}
+body{margin:0;
+background:radial-gradient(
+  ellipse at 50% -20%,
+  #24252a 0,
+  transparent 50%
+),var(--bg);;color:var(--text);font:15px/1.45 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;min-height:100vh}
+button,input{font:inherit}
+button{cursor:pointer}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px clamp(16px,4vw,52px);border-bottom:1px solid #d30000;background:#070707;position:sticky;top:0;z-index:5;backdrop-filter:blur(14px)}
+.brand{display:flex;align-items:center;gap:12px;letter-spacing:.16em;font-weight:900}
+.logo{display:grid;place-items:center;width:38px;height:38px;border:1px solid var(--cyan);color:var(--cyan);transform:rotate(45deg);box-shadow:0 0 18px #101114}
+.logo span{transform:rotate(-45deg);font-size:19px}
+.brand small{display:block;color:var(--muted);font-size:9px;letter-spacing:.28em;font-weight:700}
+.status{color:var(--cyan);font-size:11px;letter-spacing:.16em;display:flex;align-items:center;gap:8px}
+.status:before{content:"";width:7px;height:7px;background:var(--cyan);border-radius:50%;box-shadow:0 0 12px var(--cyan)}
+main{max-width:1500px;margin:auto;padding:28px clamp(14px,3vw,42px) 60px}
+.hero{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:22px}
+.eyebrow{color:var(--pink);font-size:11px;letter-spacing:.22em;font-weight:800}
+h1{font-size:clamp(27px,4vw,46px);line-height:1.05;margin:8px 0 10px;letter-spacing:-.04em}
+h1 span{color:var(--cyan);text-shadow:0 0 22px #1b1b1b}
+.sub{color:var(--muted);max-width:650px;margin:0}
+.pill{border:1px solid #15171a;border-radius:4px;padding:9px 12px;color:#ffffff;font-size:11px;letter-spacing:.08em;white-space:nowrap}
+.toolbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:#242527;border:1px solid var(--line);padding:13px;border-radius:10px;margin-bottom:16px}
+.field{display:flex;align-items:center;gap:9px;min-width:180px;flex:1}
+.field label{font-size:10px;color:var(--muted);letter-spacing:.12em;font-weight:800}
+.field input{width:100%;min-width:80px;background:#080d16;color:var(--text);border:1px solid #1b1b1b;border-radius:5px;padding:10px 12px;outline:none}
+.field input:focus{border-color:var(--cyan);box-shadow:0 0 0 2px #1b1b1b}
+.btn{border:1px solid #070707;background:#1b1b1b;color:var(--text);padding:10px 13px;border-radius:5px;font-size:11px;letter-spacing:.07em;font-weight:800;transition:.15s}
+.btn:hover{border-color:var(--cyan);color:var(--cyan)}
+.btn.primary{background:var(--cyan);border-color:var(--cyan);color:#071014}
+.btn.danger:hover{border-color:var(--danger);color:var(--danger)}
+.summary{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center;padding:15px 17px;margin-bottom:18px;border:1px solid #1b1b1b;background:linear-gradient(100deg,#1b1b1b,#1b1b1b);border-radius:8px}
+.summary-title{font-size:11px;letter-spacing:.14em;font-weight:900}
+.summary-sub{font-size:12px;color:var(--muted);margin-top:3px}
+.progress-wrap{display:flex;align-items:center;gap:10px;min-width:190px}
+.progress{height:5px;background:#1b1b1b;border-radius:20px;overflow:hidden;flex:1}
+.progress span{height:100%;display:block;background:linear-gradient(90deg,var(--cyan),var(--pink));width:0%;transition:width .2s}
+.count{font-size:12px;color:var(--cyan);font-variant-numeric:tabular-nums;white-space:nowrap}
+.legend{display:flex;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:11px;margin:0 0 15px}
+.legend span{display:flex;align-items:center;gap:6px}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--branch)}
+.tree{display:grid;grid-template-columns:repeat(5,minmax(205px,1fr));gap:13px;align-items:stretch}
+.branch{--branch:var(--cyan);position:relative;min-width:0;border:1px solid #070707;background:linear-gradient(180deg,#101114,#1b1b1b);border-radius:9px;overflow:hidden}
+.branch:before{content:"";height:2px;position:absolute;top:0;left:0;right:0;background:var(--branch);box-shadow:0 0 14px var(--branch)}
+.branch-head{padding:17px 14px 14px;border-bottom:1px solid #1b1b1b;background:linear-gradient(120deg,color-mix(in srgb,var(--branch) 9%,transparent),transparent)}
+.branch-code{font-size:9px;letter-spacing:.2em;color:var(--branch);font-weight:900}
+.branch h2{font-size:16px;margin:4px 0 5px;letter-spacing:.02em}
+.branch-desc{font-size:11px;color:var(--muted);min-height:32px}
+.branch-count{font-size:10px;color:var(--branch);margin-top:9px;letter-spacing:.08em}
+.nodes{padding:12px 10px 15px;display:flex;flex-direction:column;gap:0;position:relative}
+.nodes:before{content:"";position:absolute;top:0;bottom:12px;left:26px;width:1px;background:linear-gradient(var(--branch),#283448 75%,transparent);opacity:.6}
+.node{position:relative;display:grid;grid-template-columns:32px 1fr;gap:9px;align-items:start;padding:9px 7px;margin:0 0 5px;border:1px solid transparent;border-radius:7px;cursor:pointer;transition:background .15s,border-color .15s;z-index:1}
+.node:hover{background:#182235;border-color:#34465e}
+.node.selected{background:color-mix(in srgb,var(--branch) 11%,#101725);border-color:var(--branch);box-shadow:0 0 16px color-mix(in srgb,var(--branch) 12%,transparent)}
+.node-icon{width:30px;height:30px;display:grid;place-items:center;background:#0b111c;border:1px solid #35445a;color:var(--branch);border-radius:6px;font-size:15px;position:relative}
+.node.selected .node-icon{background:var(--branch);color:#081018;border-color:var(--branch);box-shadow:0 0 13px color-mix(in srgb,var(--branch) 38%,transparent)}
+.node-name{font-weight:800;font-size:12px;line-height:1.3;padding-top:1px}
+.node-meta{font-size:9px;color:var(--muted);letter-spacing:.08em;margin-top:4px}
+.check{position:absolute;top:4px;right:4px;font-size:10px;color:var(--branch);opacity:0}
+.node.selected .check{opacity:1}
+.node-desc{display:none;font-size:11px;color:#b8c7d9;margin-top:7px;line-height:1.4}
+.node.selected .node-desc{display:block}
+.node.selected .node-meta{color:var(--branch)}
+.connector{height:13px;position:relative;margin-left:22px;width:1px;background:#35465a}
+.connector:after{content:"";position:absolute;bottom:0;left:-3px;width:6px;height:6px;border-right:1px solid var(--branch);border-bottom:1px solid var(--branch);transform:rotate(45deg)}
+footer{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap;margin-top:18px;color:#73849a;font-size:10px;letter-spacing:.06em}
+.toast{position:fixed;bottom:18px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#dffefa;color:#061113;padding:11px 16px;border-radius:5px;font-size:12px;font-weight:800;z-index:10;transition:.2s;box-shadow:0 8px 35px #0008}
+.toast.show{transform:translate(-50%,0);opacity:1}
+.modal-backdrop{position:fixed;inset:0;background:#03060bd9;z-index:20;display:none;align-items:center;justify-content:center;padding:18px}
+.modal-backdrop.open{display:flex}
+.modal{width:min(560px,100%);max-height:85vh;overflow:auto;background:#101725;border:1px solid #34465b;border-radius:10px;padding:20px;box-shadow:0 20px 90px #000a}
+.modal h3{margin:0 0 8px}
+.modal p{color:var(--muted);font-size:13px}
+textarea{width:100%;min-height:160px;resize:vertical;background:#080d16;border:1px solid #2b3b50;color:#e9f3ff;border-radius:5px;padding:10px;font:12px/1.5 ui-monospace,monospace}
+.modal-actions{display:flex;gap:9px;justify-content:flex-end;flex-wrap:wrap;margin-top:12px}
+@media(max-width:1150px){.tree{grid-template-columns:repeat(3,minmax(210px,1fr))}}
+@media(max-width:740px){.topbar{padding:13px 15px}.status{font-size:9px}.brand{font-size:13px}main{padding-top:22px}.hero{display:block}.pill{display:inline-block;margin-top:15px}.toolbar{align-items:stretch}.field{flex-basis:100%;display:block}.field label{display:block;margin-bottom:5px}.toolbar .btn{flex:1}.summary{grid-template-columns:1fr}.progress-wrap{min-width:0}.tree{display:flex;overflow-x:auto;align-items:stretch;padding-bottom:12px;scroll-snap-type:x mandatory}.branch{flex:0 0 min(82vw,310px);scroll-snap-align:start}.branch-desc{min-height:0}.nodes{padding-bottom:22px}.legend{gap:8px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><div class="logo"><span>R</span></div><div>REIGNITED<small>CHARACTER SYSTEM / BUILD LAB</small></div></div>
+  <div class="status">BUILD MODE // ONLINE</div>
+</header>
+<main>
+  <section class="hero">
+    <div><div class="eyebrow">Tabela de Customização de Poderios</div><h1>SKILL <span>TREE</span></h1><p class="sub">Marque os perks que desejar utilizando o sistema presente no servidor como métrica para seleção. Ao término, printe e envie a captura no respectivo canal do personagem.</p></div>
+    <div class="pill">PROTÓTIPO // V.01</div>
+  </section>
+  <section class="toolbar">
+    <div class="field"><label for="playerName">PLAYER / PERSONAGEM</label><input id="playerName" maxlength="50" placeholder="Nome do personagem..." autocomplete="off"></div>
+    <button class="btn primary" id="saveBtn">SALVAR BUILD</button>
+    <button class="btn" id="shareBtn">COMPARTILHAR</button>
+    <button class="btn" id="exportBtn">EXPORTAR JSON</button>
+    <button class="btn" id="importBtn">IMPORTAR</button>
+    <button class="btn danger" id="clearBtn">LIMPAR</button>
+  </section>
+  <section class="summary">
+    <div><div class="summary-title">SUA CONFIGURAÇÃO</div><div class="summary-sub" id="summaryText">Nenhum Perk selecionado. Toque em qualquer habilidade para marcar.</div></div>
+    <div class="progress-wrap"><div class="progress"><span id="progressBar"></span></div><div class="count" id="countText">0 / 25 PERKS</div></div>
+  </section>
+  <div class="legend">
+    <span><i class="dot" style="--branch:#63f4ee"></i> FÍSICO</span>
+    <span><i class="dot" style="--branch:#ff4f9a"></i> ARMAMENTO</span>
+    <span><i class="dot" style="--branch:#ffc86b"></i> RUÍDO</span>
+    <span><i class="dot" style="--branch:#b69aff"></i> REFLEXO</span>
+    <span><i class="dot" style="--branch:#9dffb0"></i> CIBERNÉTICA</span>
+  </div>
+  <section class="tree" id="tree" aria-label="Árvore de habilidades"></section>
+  <footer><span>REIGNITED // SISTEMA DE PODERIOS & PERKS</span><span>TOQUE EM UM PERK PARA MARCAR OU DESMARCAR</span><span>BUILD SALVA NESTE NAVEGADOR</span></footer>
+</main>
+<div class="toast" id="toast" role="status"></div>
+<div class="modal-backdrop" id="modalBackdrop">
+  <div class="modal">
+    <h3 id="modalTitle">Importar build</h3>
+    <p id="modalHelp">Cole abaixo o JSON de uma build exportada.</p>
+    <textarea id="modalText" spellcheck="false"></textarea>
+    <div class="modal-actions"><button class="btn" id="cancelModal">CANCELAR</button><button class="btn primary" id="confirmModal">CONFIRMAR</button></div>
+  </div>
+</div>
+<script>
+const branches = [
+ {id:"fis",code:"PODERIO 01",name:"FÍSICO",desc:"Caracteriza o combate, Resistência e Força Corporal do personagem.",color:"#FF1744",skills:[
+  ["Passo Fantasma","Desloca-se com leveza e reduzir ruídos dos próprios movimentos. Quando fora de combate e/ou fora da visão do adversário, é indetectável até se revelar.","◈"],
+  ["Arranque","Explodir em velocidade por curtas distâncias. Cooldown de 2 turnos.","➤"],
+  ["Queda Controlada","Aterrisar de alturas com mais controle. Evita ferimentos e danificação da estrutura óssea por queda.","⌄"],
+  ["Combate Aprimorado","Firmware de aprimoramento de combate, técnicas de combate e táticas são perfeitamente executadas sem problema. Em outras palavras, você sabe lutar bem.","ϟ"],
+  ["Zumbi","Manter o ritmo durante combates prolongados. Evita a condição Cansaço até sofrer dano crítico.","∞"]]},
+ {id:"ref",code:"PODERIO 02",name:"REFLEXOS",desc:"Volta-se para a agilidade física e mental do personagem.",color:"#536DFF",skills:[
+  ["Mira Firme","Manter precisão ao agir sob pressão.","⊙"],
+  ["Golpe Calculado","Aplicar força de maneira eficiente e precisa.","✳"],
+  ["Desarme","Criar oportunidades para retirar algo das mãos de alguém.","╳"],
+  ["Contra-ataque","Aproveitar a abertura deixada por uma ação adversária.","↗"],
+  ["Presença Ameaçadora","Impor respeito através de postura e intenção.","▲"]]},
+ {id:"ruido",code:"PODERIO 03",name:"RUÍDO",desc:"Demonstra o tamanho da afinidade e flexibilidade do Ruído.",color:"#9D00FF",skills:[
+  ["Fôlego Extra","Sustentar esforço físico por mais tempo.","≋"],
+  ["Tolerância","Lidar melhor com desconforto e condições adversas.","◇"],
+  ["Improviso","Transformar recursos comuns em soluções úteis.","⌘"],
+  ["Instinto de Abrigo","Identificar lugares adequados para se proteger.","⌂"],
+  ["Último Recurso","Continuar agindo mesmo quando tudo parece perdido.","✦"]]},
+ {id:"arma",code:"PODERIO 04",name:"ARMAMENTO",desc:"Determina a capacidade e habilidades no manuseio de equipamentos de fogo e brancos.",color:"#FFEA00",skills:[
+  ["Olho Clínico","Perceber detalhes que passam despercebidos.","⌕"],
+  ["Leitura Corporal","Interpretar gestos, postura e sinais não verbais.","♧"],
+  ["Rastreio","Reconhecer pistas deixadas por pessoas ou criaturas.","⌁"],
+  ["Audição Atenta","Distinguir sons importantes em meio ao ambiente.",")))"],
+  ["Pressentimento","Notar quando algo parece fora do lugar.","⟁"]]},
+ {id:"ciber",code:"PODERIO 05",name:"CIBERNÉTICA",desc:"Dedicado à manipulação e interações com implantes.",color:"#B6FF00",skills:[
+  ["Mãos Habilidosas","Executar tarefas delicadas com precisão manual.","⌬"],
+  ["Gambiarra","Consertar ou adaptar objetos com poucos recursos.","⚙"],
+  ["Análise","Examinar um problema de forma metódica.","⌗"],
+  ["Ferramentas","Usar ferramentas variadas com eficiência.","⊞"],
+  ["Aprendizado Rápido","Assimilar procedimentos novos com facilidade.","＋"]]}
+];
+const allSkills = branches.flatMap(b=>b.skills.map(s=>s[0]));
+let selected = new Set();
+let playerName = "";
+let modalMode = "import";
+const tree = document.getElementById("tree");
+const nameInput = document.getElementById("playerName");
+function render(){
+ tree.innerHTML = "";
+ branches.forEach(b=>{
+  const chosen = b.skills.filter(s=>selected.has(s[0])).length;
+  const col=document.createElement("article"); col.className="branch"; col.style.setProperty("--branch",b.color);
+  const head=document.createElement("header"); head.className="branch-head";
+  head.innerHTML=`<div class="branch-code">${b.code}</div><h2>${b.name}</h2><div class="branch-desc">${b.desc}</div><div class="branch-count">${String(chosen).padStart(2,"0")} / ${b.skills.length} SELECIONADOS</div>`;
+  col.appendChild(head);
+  const nodes=document.createElement("div"); nodes.className="nodes";
+  b.skills.forEach((s,i)=>{
+   const isOn=selected.has(s[0]);
+   const n=document.createElement("div"); n.className="node"+(isOn?" selected":""); n.setAttribute("role","checkbox");n.setAttribute("aria-checked",String(isOn));n.setAttribute("tabindex","0");
+   n.innerHTML=`<div class="node-icon">${s[2]}<span class="check">✓</span></div><div><div class="node-name">${s[0]}</div><div class="node-meta">PERK // ${String(i+1).padStart(2,"0")}</div><div class="node-desc">${s[1]}</div></div>`;
+   const toggle=()=>{selected.has(s[0])?selected.delete(s[0]):selected.add(s[0]);render();saveLocal(false)};
+   n.addEventListener("click",toggle);n.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();toggle()}});
+   nodes.appendChild(n);
+   if(i<b.skills.length-1){const c=document.createElement("div");c.className="connector";nodes.appendChild(c)}
+  });
+  col.appendChild(nodes);tree.appendChild(col);
+ });
+ const count=selected.size;
+ document.getElementById("countText").textContent=`${count} / ${allSkills.length} PERKS`;
+ document.getElementById("progressBar").style.width=(count/allSkills.length*100)+"%";
+ document.getElementById("summaryText").textContent=count===0?"Nenhum Perk selecionado. Toque em qualquer habilidade para marcar.":`${count} Perk${count===1?" selecionado":"s selecionados"}${playerName?" para "+playerName:""} — escolhas independentes por personagem.`;
+}
+function state(){return {app:"REIGNITED Skill Tree",version:1,player:playerName,selected:[...selected],updated:new Date().toISOString()}}
+function saveLocal(show=true){
+ playerName=nameInput.value.trim(); 
+ try{localStorage.setItem("reignited-build-"+(playerName||"default"),JSON.stringify(state()));localStorage.setItem("reignited-last-build",JSON.stringify(state()));if(show)toast("Build salva neste navegador.");}catch(e){if(show)toast("Não foi possível salvar automaticamente neste navegador.");}
+}
+function loadState(obj){
+ if(!obj||!Array.isArray(obj.selected))throw new Error("Arquivo de build inválido.");
+ playerName=typeof obj.player==="string"?obj.player:"";nameInput.value=playerName;
+ selected=new Set(obj.selected.filter(x=>allSkills.includes(x)));render();saveLocal(false);toast("Build carregada.");
+}
+function toast(msg){const t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");clearTimeout(window.__toastTimer);window.__toastTimer=setTimeout(()=>t.classList.remove("show"),2400)}
+function openModal(mode){modalMode=mode;document.getElementById("modalBackdrop").classList.add("open");document.getElementById("modalTitle").textContent=mode==="import"?"Importar build":"Build em formato JSON";document.getElementById("modalHelp").textContent=mode==="import"?"Cole abaixo o JSON de uma build exportada.":"Copie este conteúdo para guardar ou enviar sua build.";document.getElementById("modalText").value=mode==="export"?JSON.stringify(state(),null,2):"";document.getElementById("confirmModal").style.display=mode==="export"?"none":"inline-block";document.getElementById("modalText").readOnly=mode==="export"}
+document.getElementById("saveBtn").addEventListener("click",()=>saveLocal(true));
+document.getElementById("playerName").addEventListener("input",()=>{playerName=nameInput.value.trim();render();saveLocal(false)});
+document.getElementById("exportBtn").addEventListener("click",()=>openModal("export"));
+document.getElementById("importBtn").addEventListener("click",()=>openModal("import"));
+document.getElementById("cancelModal").addEventListener("click",()=>document.getElementById("modalBackdrop").classList.remove("open"));
+document.getElementById("confirmModal").addEventListener("click",()=>{try{loadState(JSON.parse(document.getElementById("modalText").value));document.getElementById("modalBackdrop").classList.remove("open")}catch(e){toast("JSON inválido. Confira o conteúdo e tente novamente.")}});
+document.getElementById("clearBtn").addEventListener("click",()=>{if(confirm("Desmarcar todos os Perks desta build?")){selected.clear();render();saveLocal(false);toast("Seleções limpas.")}});
+document.getElementById("shareBtn").addEventListener("click",async()=>{const payload=btoa(unescape(encodeURIComponent(JSON.stringify(state()))));const url=location.href.split("#")[0]+"#build="+payload;try{await navigator.clipboard.writeText(url);toast("Link copiado! Publique este HTML num site para compartilhar pela internet.")}catch(e){openModal("export");toast("Copie o JSON da build; o link só funciona depois de hospedar a página.")}});
+try{
+ const hash=location.hash.match(/#build=([^&]+)/);
+ if(hash){const obj=JSON.parse(decodeURIComponent(escape(atob(hash[1]))));playerName=obj.player||"";nameInput.value=playerName;selected=new Set((obj.selected||[]).filter(x=>allSkills.includes(x)))}
+ else{const last=localStorage.getItem("reignited-last-build");if(last){const obj=JSON.parse(last);playerName=obj.player||"";nameInput.value=playerName;selected=new Set((obj.selected||[]).filter(x=>allSkills.includes(x)))}}
+}catch(e){}
+render();
+</script>
+</body>
+</html>
