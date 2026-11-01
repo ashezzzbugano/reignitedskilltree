@@ -126,7 +126,7 @@ textarea{width:100%;min-height:160px;resize:vertical;background:#080d16;border:1
   <div class="legend">
     <span><i class="dot" style="--branch:#63f4ee"></i> FÍSICO</span>
     <span><i class="dot" style="--branch:#ff4f9a"></i> ARMAMENTO</span>
-    <span><i class="dot" style="--branch:#ffc86b"></i> RUÍDO</span>
+    <span><i class="dot" style="--branch:#ffc86b"></i> HACKING</span>
     <span><i class="dot" style="--branch:#b69aff"></i> REFLEXO</span>
     <span><i class="dot" style="--branch:#9dffb0"></i> CIBERNÉTICA</span>
   </div>
@@ -144,36 +144,61 @@ textarea{width:100%;min-height:160px;resize:vertical;background:#080d16;border:1
 </div>
 <script>
 const branches = [
- {id:"fis",code:"PODERIO 01",name:"FÍSICO",desc:"Caracteriza o combate, Resistência e Força Corporal do personagem.",color:"#FF1744",skills:[
-  ["Passo Fantasma","Desloca-se com leveza e reduzir ruídos dos próprios movimentos. Quando fora de combate e/ou fora da visão do adversário, é indetectável até se revelar.","◈"],
-  ["Arranque","Explodir em velocidade por curtas distâncias. Cooldown de 2 turnos.","➤"],
-  ["Queda Controlada","Aterrisar de alturas com mais controle. Evita ferimentos e danificação da estrutura óssea por queda.","⌄"],
-  ["Combate Aprimorado","Firmware de aprimoramento de combate, técnicas de combate e táticas são perfeitamente executadas sem problema. Em outras palavras, você sabe lutar bem.","ϟ"],
-  ["Zumbi","Manter o ritmo durante combates prolongados. Evita a condição Cansaço até sofrer dano crítico.","∞"]]},
+ {id:"fis",code:"PODERIO 01",name:"FÍSICO",desc:"Caracteriza o combate, resistência e força corporal do personagem.",color:"#FF1744",skills:[
+  ["Amor usando roupas.","Luta agarrada pra você não é um problema. Qualquer imobilização sua pode causar fraturas se o adversário não se libertar em dois turnos.","◈"],
+  ["Engatilhado & Carregado.","Uma vez por combate, pode executar um contra-ataque garantido contra seu adversário. Desde que seja acertado por um golpe físico e retribuia com um golpe físico.","➤"],
+  ["Peso Pesado.","Ser atingidos por golpes que normalmente empurrariam pessoas normais não lhe deslocam de sua posição","⌄"],
+  ["Combate Assimilado.","Firmware de aprimoramento de combate, técnicas de combate e táticas são perfeitamente copiadas e aprendidas sem problema.","ϟ"],
+  ["110%", "Quando levado ao Limite de Ferimentos, pode continuar lutando por um adicional de turnos igual à quantidade de Perks em Físico.", "⧫"],
+  ["Fibra. Não é água com músculo.", "Seus golpes naturais são excepcionalmente poderosos e podem empurrar Pesos Pesados. Seus golpes podem causar fraturas ósseas se bem descritos e encaixados.", "⟡"],
+  ["Cabeça-chata.", "Seu crânio duro como aço lhe permite aguentar pancadas na cabeça sem desmaiar. O único método de lhe apagar fisicamente é atingindo com uma arma branca ou com uma Perk de aumento de força.", "⟊"],
+  ["Wake up to reality.", "Ao ficar inconsciente, seu corpo age sozinho por uma quantidade de turnos equivalente à quantidade de Perks em Físico.", "⏣"],
+  ["Lutador de Arena.", "Se derrubar um adversário, você reduz o seu quadro de Ferimentos em -1 Classificação.", "⛨"],
+  ["R. Balboa.","Manter o ritmo durante combates prolongados. Evita a condição Cansaço até ser colocado inconsciente, mas tira todas as suas perks de Reflexo.","∞"]]},
  {id:"ref",code:"PODERIO 02",name:"REFLEXOS",desc:"Volta-se para a agilidade física e mental do personagem.",color:"#536DFF",skills:[
-  ["Mira Firme","Manter precisão ao agir sob pressão.","⊙"],
-  ["Golpe Calculado","Aplicar força de maneira eficiente e precisa.","✳"],
-  ["Desarme","Criar oportunidades para retirar algo das mãos de alguém.","╳"],
-  ["Contra-ataque","Aproveitar a abertura deixada por uma ação adversária.","↗"],
-  ["Presença Ameaçadora","Impor respeito através de postura e intenção.","▲"]]},
- {id:"ruido",code:"PODERIO 03",name:"RUÍDO",desc:"Demonstra o tamanho da afinidade e flexibilidade do Ruído.",color:"#9D00FF",skills:[
-  ["Fôlego Extra","Sustentar esforço físico por mais tempo.","≋"],
-  ["Tolerância","Lidar melhor com desconforto e condições adversas.","◇"],
-  ["Improviso","Transformar recursos comuns em soluções úteis.","⌘"],
-  ["Instinto de Abrigo","Identificar lugares adequados para se proteger.","⌂"],
-  ["Último Recurso","Continuar agindo mesmo quando tudo parece perdido.","✦"]]},
+  ["Arranque.","Avança velozmente por até 2m em uma direção selecionada. Cooldown de 2 turnos.","⊙"],
+  ["Pêndulo.","Uma vez por combate, pode efetuar um desvio de um golpe físico.","✳"],
+  ["Desarme.","Ao fitar um inimigo sacando um armamento, pode optar por tentar removê-lo das mãos do alvo. O alvo pode evitar caso tenha Olhos Rápidos.","╳"],
+  ["Shhh.exe.","Escondendo-se e permanecendo fora da visão de inimigos, torna-se indetectável via sentidos básicos.","↗"],
+  ["Olhos Rápidos.","Pode perceber atitudes minuciosas de alguém, permitindo que possa precaver-se com maior facilidade.","ᛝ"],
+  ["Ímpeto.","Uma vez por combate, garantir um bloqueio de golpe físico.","಄"],
+  ["Gelo Fino.","Quando encontrado por alguém, ganha um turno para se esconder e garantir cobertura, saindo de vista.","𓏵"],
+  ["Companheiro Certo.","Ganha um turno extra quando alguma ação de suporte (ex: curar alguém) falha. Só funciona uma vez por cena.","𝄞"],
+  ["Versatilidade.","Uma vez por cena, pode usar uma Perk de outra árvore que você não tem. Em troca, nunca mais pode usar a mesma Perk com essa habilidade, e esta não funciona com Hacking.","⿻"],
+  ["Execução Ninja.","Agarrar alguém por trás lhe permite incapacitar o alvo imediatamente.","▲"]]},
+ {id:"netrun",code:"PODERIO 03",name:"HACKING",desc:"Demonstra o conhecimento e capacidades no 'netrunning' e no hacking.",color:"#9D00FF",skills:[
+  ["Fritar.","Invade o Sistema Operacional Privado de alguém para lhe causar sobrecarga. Cooldown de 2 turnos.","≋"],
+  ["Overclock.","Tira o cooldown de uma habilidade em troca de temporariamente desabilitar suas perks de Reflexo.","◇"],
+  ["Improviso.","Pode hackear trancas e quebrar códigos para desbloquear chips, armas e o que estiver sob influência de um bloqueio tecnológico.","⌘"],
+  ["Contágio.","Libera um vírus que invade o sistema de outra pessoa e desabilita uma perk aleatória de um poderio aleatório, espalha para inimigos em proximidade de toque. Cooldown equivalente à quantidade de pessoas atingidas.","⌂"],
+  ["Desabilitar Tecnologia.","Desativa a cibernética ou armamento tecnológico por uma quantidade de turnos igual à das suas perks em Hacking. Cooldown proporcional.","❥"],
+  ["Controle Automotivo.","Invade o Sistema Operacional de veículos para fazê-los acelerar, explodir ou etc. Pode usar dos outros hacks presentes nesta lista em veículos.","◈"],
+  ["Deletar Memória.","Faz com que alguém se esqueça de uma informação, como ter lhe visto ou etc. Mas só pode realizar esse tipo de hack ao sair da visão de alguém ou quando a situação que deseja apagar se encerrou.","≋"],
+  ["Sonic BOOM.","Faz com que os sentidos de alguém buguem e a sinapse pare de ser captada. Pode deixar alguém cego, surdo, sem tato ou mudo. Duração igual a quantidade de perks de Hacking.","z"],
+  ["Ping.","Solta um malware que revela a posição de outras pessoas a partir da sua cibernética.","≋"],
+  ["Último Recurso.","Pode ignorar os requisitos de ativação de algum hack, em troca de fritar seu próprio circuito e entrar na condição Danificado em todos os seus cromos.","✦"]]},
  {id:"arma",code:"PODERIO 04",name:"ARMAMENTO",desc:"Determina a capacidade e habilidades no manuseio de equipamentos de fogo e brancos.",color:"#FFEA00",skills:[
-  ["Olho Clínico","Perceber detalhes que passam despercebidos.","⌕"],
-  ["Leitura Corporal","Interpretar gestos, postura e sinais não verbais.","♧"],
-  ["Rastreio","Reconhecer pistas deixadas por pessoas ou criaturas.","⌁"],
-  ["Audição Atenta","Distinguir sons importantes em meio ao ambiente.",")))"],
-  ["Pressentimento","Notar quando algo parece fora do lugar.","⟁"]]},
+  ["Mira Certeira.","A cada cinco turnos, consegue atingir alvos em movimentação garantidamente.","⌕"],
+  ["Até o Diabo Chora.","Consegue manusear e atirar perfeitamente portando duas armas de fogo.","♧"],
+  ["Ruminância.","Armas contundentes marcam os inimigos com Ferimentos Persistentes. Essa condição tira uma Perk de Físico do adversário atingido. Dura por 2 turnos e tem cooldown de 3.","♧"],
+  ["Engrenagem de Metal Dura.","Suas armas possuem resistência excepcional e não quebram em combates mundanos, apenas contra bosses.","♧"],
+  ["Slasher.","Quando com uma arma branca em mãos, pode efetuar um rush contra o adversário que deseja atingir, o alvo precisa estar no mesmo chat para funcionar.","♧"],
+  ["Obtenção de Permissão.","Utiliza armas tecnológicas sem necessidade de um implante específico para se conectar com elas.","♧"],
+  ["Raposa Prateada.","Toda arma de combate físico nas suas mãos desfere choques elétricos.","♧"],
+  ["Modo Katana.","Especificamente katanas, nas suas mãos, são mais letais. Caso desfira golpes nos membros orgânicos de alguém, pode arrancá-los imediatamente.","⌁"],
+  ["Companheiro.","Escolha uma arma como sua favorita. A arma favorita não pode ter suas habilidades usadas por outra pessoa que não seja você.",")))"],
+  ["Muambeiro.","Pode fazer explosivos a partir da cibernética de inimigos e aliados caídos.","⟁"]]},
  {id:"ciber",code:"PODERIO 05",name:"CIBERNÉTICA",desc:"Dedicado à manipulação e interações com implantes.",color:"#B6FF00",skills:[
-  ["Mãos Habilidosas","Executar tarefas delicadas com precisão manual.","⌬"],
-  ["Gambiarra","Consertar ou adaptar objetos com poucos recursos.","⚙"],
-  ["Análise","Examinar um problema de forma metódica.","⌗"],
-  ["Ferramentas","Usar ferramentas variadas com eficiência.","⊞"],
-  ["Aprendizado Rápido","Assimilar procedimentos novos com facilidade.","＋"]]}
+  ["Licença para Equipar.","Pode ter dois implantes em uma parte do corpo só. Isso não anula o aumento da barra de ciberpsicose.","⌬"],
+  ["Gambiarra.","Se um implante quebrar, pode gastar 2 turnos pra repará-lo. Dura pela cena e só pode ser usado em um único implante por cena.","⚙"],
+  ["Para-Choque.","Seus implantes de perna lhe permitem sofrer quedas de grandes alturas sem morrer.","❦"],
+  ["Gênio Cibernético.","A cada meia dúzia de implantes, recebe uma Perk extra de uma árvore à escolha; escolha a Perk, igualmente.","⌗"],
+  ["Renovação.","Pode ter três cromos no mesmo lugar. Precisa de Licença para Equipar para obter.","℘"],
+  ["Medtech.","Seus implantes podem ter características medicinais e podem tratar feridos em qualquer lugar.","؛ ଓ"],
+  ["Achei ali, senhor.","Mascara seus cromos de classificação proibida, impedindo de serem detectados pela polícia.","𑄝"],
+  ["Análise.","Examinar adversário pode lhe permitir descobrir qual o tipo e classe da cibernética deles.","✴︎"],
+  ["Crise Psicótica.","Pode forçar ciberpsicose em si mesmo.","⊞"],
+  ["Correndo no Limite.","Pode ultrapassar o limite de cibernética e resistir à Ciberpsicose, ofertando +5 de Resistência à Cibernética. Mas desabilita sua árvore de Poderio Físico.","＋"]]}
 ];
 const allSkills = branches.flatMap(b=>b.skills.map(s=>s[0]));
 let selected = new Set();
